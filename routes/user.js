@@ -4,7 +4,9 @@ const { userGet,
         userPost,
         userDelete } = require('../controllers/user.controller');
 const { check } = require('express-validator');
-const  { validarCampos } = require('../middlewares/validar-campos');
+const { validarCampos } = require('../middlewares/validar-campos');
+const { validarJWT } = require('../middlewares/validar-jwt');
+const { esAdminRole, tieneRole } = require('../middlewares/validar-roles');
 const { esRoleValido, existeCorreo, existeUsuarioById } = require('../helpers/db-validators');
 const router = Router();
 
@@ -25,6 +27,9 @@ router.post('/', [
 ], userPost);
 
 router.delete('/:id', [
+    validarJWT,
+    tieneRole('ADMIN_ROLE', 'VENTAS_ROLE'),
+    esAdminRole,
     check('id').custom( existeUsuarioById ),
     validarCampos 
 ],userDelete);

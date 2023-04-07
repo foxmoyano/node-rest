@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const Role = require('../models/role');
-const Usuario = require('../models/usuario');
+const Usuario = require('../models/user');
 
 const esRoleValido = async(rol = '') => {
     const existeRol = await Role.findOne({ rol });
