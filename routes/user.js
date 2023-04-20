@@ -13,10 +13,11 @@ const router = Router();
 router.get('/', userGet);
 
 router.put('/:id', [
+    check('id', 'No es un ID de Mongo').isMongoId(),
     check('id').custom( existeUsuarioById ),
     check('rol').custom( esRoleValido ),
     validarCampos
-],userPut);
+], userPut);
 
 router.post('/', [
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
@@ -27,11 +28,12 @@ router.post('/', [
 ], userPost);
 
 router.delete('/:id', [
-    validarJWT,
+    validarJWT,    
     tieneRole('ADMIN_ROLE', 'VENTAS_ROLE'),
     esAdminRole,
+    check('id', 'No es un ID de Mongo').isMongoId(),
     check('id').custom( existeUsuarioById ),
     validarCampos 
-],userDelete);
+], userDelete);
 
 module.exports = router;

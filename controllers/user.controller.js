@@ -55,8 +55,6 @@ const userPost = async(req, res = response ) =>  {
 const userDelete = async(req, res = response ) =>  {
     const { id } = req.params;
 
-    //const usuario = await Usuario.findByIdAndDelete(id);
-
     const usuarioValidado = req.usuario
     const usuario = await Usuario.findByIdAndUpdate(id, { estado: false});
 
