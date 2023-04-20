@@ -22,4 +22,4 @@ COPY --from=builder /app/dist .
 
 EXPOSE ${PORT}
 
-CMD [ "node", "index.js" ]
+CMD [ "node", "bundle.js" ]
