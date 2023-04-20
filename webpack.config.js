@@ -1,5 +1,6 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './app.js',
@@ -24,4 +25,10 @@ module.exports = {
             },
         ],
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+          template: './public/index.html', // la ruta al archivo HTML principal de tu aplicación
+          filename: 'index.html' // el nombre del archivo HTML de salida
+        })
+    ]    
 };
