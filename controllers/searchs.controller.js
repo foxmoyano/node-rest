@@ -1,5 +1,7 @@
 const { request, response } = require('express');
-const { Usuario, Categoria, Role } = require('../models');
+const Usuario = require('../models/user');
+const Categoria = require('../models/category');
+const Role = require('../models/role');
 const Producto = require('../models/product');
 const { ObjectId } = require('mongoose').Types
 
